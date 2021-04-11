@@ -49,6 +49,6 @@ for (let i = 0; i < working_hours.length; i++) {
 
 let total= document.createElement('li');
 unorderedList.appendChild(total);
-total.textContent=total;
+total.textContent='total number is '+ seatle.total;
 
 
