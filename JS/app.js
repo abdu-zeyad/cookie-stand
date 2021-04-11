@@ -10,6 +10,7 @@ const seatle ={
   avgCookPerHr:6.3,
   randNum:[],
   numOfCookies:[],
+  total:0,
 
   random:function () {
     return Math.random()*(this.maxCust-this.minCust)+this.minCust;
@@ -19,6 +20,7 @@ const seatle ={
     for (let i = 0; i < working_hours.length; i++) {
       this.randNum[i]=this.random();
       this.numOfCookies[i]=Math.floor(this.randNum[i]*this.avgCookPerHr);
+      this.total = this.total + this.numOfCookies[i];
 
     }
   }
@@ -43,4 +45,10 @@ for (let i = 0; i < working_hours.length; i++) {
   list.textContent=working_hours[i]+'   : '+seatle.numOfCookies[i];
 
 }
+
+
+let total= document.createElement('li');
+unorderedList.appendChild(total);
+total.textContent=total;
+
 
