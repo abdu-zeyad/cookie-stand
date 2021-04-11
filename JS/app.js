@@ -1,8 +1,13 @@
 'use strict';
 
 let working_hours =['6:00am','7:00am','8:00am','9:00am','10:00am','11:00am','12:00am','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm','7:00pm'];
+let locationsa =['seatle','tokyo','Dubai','Paris','Lima'];
+let min =[23,3,11,20,2];
+let max =[65,24,38,38,16];
+let avg =[6.3,1.2,3.7,2.3,4.6];
 
-function loc(x,y,z) {
+
+function loc(x,y,z,b) {
   const seatle ={
     minCust:x,
     maxCust:y,
@@ -29,9 +34,8 @@ function loc(x,y,z) {
 
   let cont=document.getElementById('container');
   let header=document.createElement('h1');
-
   cont.appendChild(header);
-  header.textContent='Seatle';
+  header.textContent=b;
 
 
   let unorderedList=document.createElement('ul');
@@ -52,6 +56,6 @@ function loc(x,y,z) {
 }
 
 
-
-
-loc(23,65,6.3);
+for (let m = 0; m < locationsa.length; m++) {
+  loc(min[m],max[m],avg[m],locationsa[m]);
+}
