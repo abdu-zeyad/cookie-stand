@@ -155,3 +155,5 @@ function randomValue(min, max) { // min and max included
 //Math.ceil => 5.9 = > 6;
 // 3.1 =>4
 
+
+
