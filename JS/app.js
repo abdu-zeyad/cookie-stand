@@ -30,6 +30,7 @@ function loc(x,y,z,b) {
     }
 
   };
+
   seatle.cookieNum();
 
   let cont=document.getElementById('container');
