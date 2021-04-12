@@ -1,111 +1,115 @@
-function randomValue(min, max) { // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min);
+'use strict';
+
+const hoursOfOpen= ['6 AM','7 AM','8 AM','9 AM','10 AM','11 AM','12 PM','1 PM','2 PM','3 PM','4 PM','5 PM','6 PM','7 PM'];
+let branchs = [];
+function Store (branchName,minCust,maxCust,avgCookiesPercust,salesFactor){
+  this.branchName=branchName;
+  this.minCust=minCust;
+  this.maxCust=maxCust;
+  this.avgCookiesPercust=avgCookiesPercust;
+  this.salesFactor=salesFactor;
+  this.custNumHourly=[];
+  this.cookisPerHour=[];
+  this.totalCookies=0;
+  branchs.push(this);
+
 }
-
-
-// Constructor function (Template)
-let arrOfobjects = [];
-function Kitten(kittenName,likes,isGoodWithKids,isGoodWithOtherCats,isGoodWithDogs,breed){
-  this.kittenName = kittenName;
-  this.likes = likes;
-  this.isGoodWithKids = isGoodWithKids;
-  this.isGoodWithOtherCats = isGoodWithOtherCats;
-  this.isGoodWithDogs = isGoodWithDogs;
-  this.breed = breed;
-  this.newArr = [];
-  this.age = 0; // because we didn't know the ages
-  arrOfobjects.push(this);
-}
-
-//Creating the objects
-
-let frankie = new Kitten('frankie',['jummping','crying','sleeping','stealingFood'],true,false,true,'persian');
-
-let seerena = new Kitten('serena',['jummping','stealingFood'],false,false,true,'Sheeraz');
-
-let jumper = new Kitten('jumper',['reading','jumping'],true,true,true,'American');
-let bashar = new Kitten('Bashar',['nothing','nothing'],false , false ,false,'Human');
-
-// the methods for out objects
-Kitten.prototype.getAge = function(){
-  this.age = randomValue(3,12);
-  // for(let i = 0 ; i < 10; i++){
-  //     this.newArr.push(i);
-  //     console.log(this.newArr);
-  // }
-
+Store.prototype.randomCust=function(){
+  for (let i=0;i<14;i++){
+    this.custNumHourly.push(Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust));
+  }
+};
+Store.prototype.cookiesHourly=function(){
+  for (let i=0;i<14;i++){
+    this.cookisPerHour.push(Math.ceil(this.avgCookiesPercust*this.custNumHourly[i]*this.salesFactor));
+  }
+};
+Store.prototype.total=function(){
+  for(let i=0;i<14;i++){
+    this.totalCookies=this.totalCookies+this.cookisPerHour[i];
+  }
+};
+Store.prototype.calc=function(){
+  this.randomCust();
+  this.cookiesHourly();
+  this.total();
+};
+Store.prototype.render=function(){
+  let tableRow=document.createElement('tr');
+  table.appendChild(tableRow);
+  let tableData=document.createElement('td');
+  tableRow.appendChild(tableData);
+  tableData.textContent=this.branchName;
+  for(let i=0;i<this.cookisPerHour.length;i++){
+    tableData=document.createElement('td');
+    tableRow.appendChild(tableData);
+    tableData.textContent=this.cookisPerHour[i];
+  }
+  tableData=document.createElement('td');
+  tableRow.appendChild(tableData);
+  tableData.textContent=this.totalCookies;
 };
 
-Kitten.prototype.render = function(){
-  let container = document.getElementById('kittenProfiles');
-  let article = document.createElement('article');
-  container.appendChild(article);
-  let h2 = document.createElement('h2');
-  article.appendChild(h2);
-  h2.textContent = this.kittenName;
-  let paragraph = document.createElement('p');
-  article.appendChild(paragraph);
-  paragraph.textContent = `${this.kittenName} is a ${this.breed} and his age is ${this.age} years old`;
-
-  let unorderlist = document.createElement('ul');
-  article.appendChild(unorderlist);
-  let li = null;
-  for(let i = 0 ; i < this.likes.length ; i++){
-    li = document.createElement('li');
-    unorderlist.appendChild(li);
-    li.textContent = this.likes[i];
-  }
-  let image = document.createElement('img');
-  article.appendChild(image);
-  // image.setAttribute('src', 'images/frankie.jpeg');
-  image.setAttribute('src', `images/${this.kittenName}.jpeg`);
-
-  let table = document.createElement('table');
-  article.appendChild(table);
-  let headerRow = document.createElement('tr');
-  table.appendChild(headerRow);
+let seattle = new Store('Seattle',23,65,6.3,1);
+let tokyo = new Store('Tokyo',3,24,1.2,1);
+let dubai = new Store('Dubai',11,38,3.7,1);
+let paris = new Store('Paris',20,38,2.3,1);
+let lima = new Store('Lima',23,65,6.3,1);
 
 
-
-  let interesArr = ['isGoodWithKids','IsGoodWithDogs','IsGoodWithOtherCats'];
-  for(let i = 0 ;i< interesArr.length;i++){
-    let thElemnt = document.createElement('th');
-    headerRow.appendChild(thElemnt);
-    thElemnt.textContent = interesArr[i];
-  }
-
-  let dataRow = document.createElement('tr');
-  table.appendChild(dataRow);
-  let td1= document.createElement('td');
-  dataRow.appendChild(td1);
-  td1.textContent = this.isGoodWithKids;
-  let td2= document.createElement('td');
-  dataRow.appendChild(td2);
-  td2.textContent = this.isGoodWithDogs;
-  let td3= document.createElement('td');
-  dataRow.appendChild(td3);
-  td3.textContent = this.isGoodWithOtherCats;
-
-
-};
-
-for(let i = 0 ; i< arrOfobjects.length; i++){
-  arrOfobjects[i].getAge();
-  arrOfobjects[i].render();
+let container = document.getElementById('cookieSales');
+let heading = document.createElement('h2');
+container.appendChild(heading);
+heading.textContent='Sales Statistics :';
+let table =document.createElement('table');
+container.appendChild(table);
+let tableRow=document.createElement('tr');
+table.appendChild(tableRow);
+let tableHeader=document.createElement('th');
+tableRow.appendChild(tableHeader);
+tableHeader.textContent='      ';
+for(let i=0;i<hoursOfOpen.length;i++){
+  tableHeader=document.createElement('th');
+  tableRow.appendChild(tableHeader);
+  tableHeader.textContent=hoursOfOpen[i];
 }
+tableHeader=document.createElement('th');
+tableRow.appendChild(tableHeader);
+tableHeader.textContent='Daily Location Total';
+
+seattle.calc();
+tokyo.calc();
+dubai.calc();
+paris.calc();
+lima.calc();
+seattle.render();
+tokyo.render();
+dubai.render();
+paris.render();
+lima.render();
+finalRow();
+console.log(branchs);
 
 
-// function headerRow(){
 
-// }
-
-// prototype.render(){
-//     tableData
-// }
-
-// seattle 322,300 , 14   1321321
-
-
-// function footerRow(){
-
-// }
+function finalRow(){
+  let lastRow=document.createElement('tr');
+  table.appendChild(lastRow);
+  let tableData=document.createElement('td');
+  lastRow.appendChild(tableData);
+  tableData.textContent='Totals/hrs';
+  let cookiesForAll=0;
+  for(let i=0;i<hoursOfOpen.length;i++){
+    let totalAtOneHour=0;
+    for(let j=0;j<branchs.length;j++){
+      totalAtOneHour=totalAtOneHour+branchs[j].cookisPerHour[i];
+    }
+    tableData=document.createElement('td');
+    lastRow.appendChild(tableData);
+    tableData.textContent=totalAtOneHour;
+    cookiesForAll=cookiesForAll+totalAtOneHour;
+  }
+  let lastData=document.createElement('td');
+  lastRow.appendChild(lastData);
+  lastData.textContent=cookiesForAll;
+}
