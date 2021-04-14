@@ -122,3 +122,24 @@ function final(){
   lastData.textContent=cookiesForAll;
 }
 final();
+
+
+
+const form = document.getElementById('newbranch');
+
+form.addEventListener('submit', handleSubmitting);
+
+function handleSubmitting(event){
+  event.preventDefault ();
+  console.log('event of ',event);
+
+  let location = event.target.namefield.value;
+  let min = event.target.good.value;
+  let max = event.target.good.value;
+  let avg = event.target.good.value;
+
+  let newlocation = new Shop (location,min,max,avg);
+  newlocation.calc;
+}
+// String.split; // to change from string to array
+// breed =parseFloat(breed);
