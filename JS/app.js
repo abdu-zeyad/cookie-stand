@@ -1,41 +1,10 @@
 'use strict';
 
-<<<<<<< HEAD
 let container = document.getElementById('container');
 
 let table =document.createElement('table');
 container.appendChild(table);
 
-=======
-let hours =['6:00am','7:00am','8:00am','9:00am','10:00am','11:00am','12:00am','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm','6:00pm','7:00pm'];
-let locationsa =['seatle','tokyo','Dubai','Paris','Lima'];
-let min =[23,3,11,20,2];
-let max =[65,24,38,38,16];
-let avg =[6.3,1.2,3.7,2.3,4.6];
-
-
-function loc(x,y,z,b) {
-  const seatle ={
-    minCust:x,
-    maxCust:y,
-    avgCookPerHr:z,
-    randNum:[],
-    numOfCookies:[],
-    total:0,
-
-    random:function () {
-      return Math.random()*(this.maxCust-this.minCust)+this.minCust;
-    },
-
-    cookieNum:function () {
-      for (let i = 0; i < hours.length; i++) {
-        this.randNum[i]=this.random();
-        this.numOfCookies[i]=Math.floor(this.randNum[i]*this.avgCookPerHr);
-        this.total = this.total + this.numOfCookies[i];
-
-      }
-    }
->>>>>>> main
 
 function headerRow(){
   let firstRow=document.createElement('tr');
@@ -82,14 +51,7 @@ Shop.prototype.cookiesHourly_f=function(){
     this.cookisPerHour.push(Math.ceil(this.avgCookiesPercust*this.custNumHourly[i]));
     this.totalCookies=this.totalCookies+this.cookisPerHour[i];
 
-<<<<<<< HEAD
   }
-=======
-  for (let i = 0; i < hours.length; i++) {
-    let list=document.createElement('li');
-    unorderedList.appendChild(list);
-    list.textContent=hours[i]+'   : '+seatle.numOfCookies[i];
->>>>>>> main
 
 };
 // this function is used to display the table headers on html which is locations (th), and cells which is td.(creat a colum)
