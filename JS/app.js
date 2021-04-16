@@ -175,7 +175,6 @@ function addlocation(event){
 //     let th = document.createElement('th');
 //     tr.appendChild(th);
 //     th.textContent = hours[i];
-//   }
 //   let thEnd = document.createElement('th');
 //   tr.appendChild(thEnd);
 //   thEnd.textContent = 'Daily Location Total';
